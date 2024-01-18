@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bookMark</title>
+</head>
+<body>
+    <div id="links">
+        <div><a href="./index.html">Home</a></div>
+        <div><a href="./applied.html">Applied Jobs</a></div>
+        <div><a href="./bookmark.html">Bookmarks</a></div>
+    </div>
+    <table border="2">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Job applied</th>
+          
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+      <script>
+         let bookMarkArr=JSON.parse(localStorage.getItem("bookMarkApplied"))||[];
+         console.log(bookMarkArr);
+
+         displayTable(bookMarkArr)         
+         function displayTable(bookMarkArr){
+           document.querySelector("tbody").innerHTML=""
+               bookMarkArr.forEach(function(elem){
+   
+                   let row=document.createElement("tr");
+                   let col1=document.createElement("td");
+                   col1.innerText=elem.name;
+                   let col2=document.createElement("td");
+                   col2.innerText=elem.email;
+                   let col3=document.createElement("td");
+                   col3.innerText=elem.role;
+                  
+                   row.append(col1,col2,col3);
+                   document.querySelector("tbody").append(row);
+               })
+        }
+   
+      </script>
+</body>
+</html>

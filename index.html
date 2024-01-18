@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+<body>
+    <div id="links">
+        <div><a href="./index.html">Home</a></div>
+        <div><a href="./applied.html">Applied Jobs</a></div>
+        <div><a href="./bookmark.html">Bookmarks</a></div>
+    </div>
+    <form >
+        <h2>Enter Your Application Details</h2>
+        <input placeholder="Enter Name" id="name" name="name" type="text" />
+        <br>
+        <input placeholder="Enter email" type="email" name="email" id="email" />
+        <br>
+        <select id="role">
+            <option value="FSD">FSD</option>
+            <option value="Backend">Backend</option>
+            <option value="Frontend">Frontend</option>
+        </select>
+        <br>
+        <input id="submit" type="submit" name="submit" value="Submit" />
+    </form>
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit",myFunc);
+    
+    let ArrObj=JSON.parse(localStorage.getItem("todo"))||[];
+    function myFunc(){
+        event.preventDefault();
+
+        let obj={
+        name:document.querySelector("#name").value,
+        email:document.querySelector("#email").value,
+        role:document.querySelector("#role").value
+        }
+       console.log(obj);
+       ArrObj.push(obj);
+       console.log(ArrObj);
+       localStorage.setItem("todo",JSON.stringify(ArrObj))
+    }
+</script>
