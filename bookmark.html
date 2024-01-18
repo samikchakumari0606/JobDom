@@ -17,7 +17,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Job applied</th>
-          
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
          displayTable(bookMarkArr)         
          function displayTable(bookMarkArr){
            document.querySelector("tbody").innerHTML=""
-               bookMarkArr.forEach(function(elem){
+               bookMarkArr.forEach(function(elem,index){
    
                    let row=document.createElement("tr");
                    let col1=document.createElement("td");
@@ -40,10 +40,21 @@
                    col2.innerText=elem.email;
                    let col3=document.createElement("td");
                    col3.innerText=elem.role;
-                  
-                   row.append(col1,col2,col3);
+                   let col4=document.createElement("td");
+                   col4.innerText="delete";
+                   col4.addEventListener("click",function(){
+                        delFunc(index)
+                   })
+                   row.append(col1,col2,col3,col4);
                    document.querySelector("tbody").append(row);
                })
+        }
+
+        function delFunc(index){
+          console.log(index)
+          bookMarkArr.splice(index,1);
+          displayTable(bookMarkArr)
+          localStorage.setItem("bookMarkApplied",JSON.stringify(bookMarkArr));
         }
    
       </script>
